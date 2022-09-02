@@ -1,0 +1,2435 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "NRF NFManagement Service",
+    "description" : "NRF NFManagement Service.\n© 2019, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).\nAll rights reserved.\n",
+    "version" : "1.0.2"
+  },
+  "externalDocs" : {
+    "description" : "3GPP TS 29.510 V15.3.0; 5G System; Network Function Repository Services; Stage 3",
+    "url" : "http://www.3gpp.org/ftp/Specs/archive/29_series/29.510/"
+  },
+  "servers" : [ {
+    "url" : "https://example.com/nnrf-nfm/v1",
+    "variables" : {
+      "apiRoot" : {
+        "description" : "apiRoot as defined in subclause 4.4 of 3GPP TS 29.501",
+        "default" : "https://example.com"
+      }
+    }
+  } ],
+  "paths" : {
+    "/nf-instances" : {
+      "get" : {
+        "tags" : [ "NF Instances (Store)" ],
+        "summary" : "Retrieves a collection of NF Instances",
+        "operationId" : "GetNFInstances",
+        "parameters" : [ {
+          "name" : "nf-type",
+          "in" : "query",
+          "description" : "Type of NF",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/NFType"
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "How many items to return at one time",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Expected response to a valid request",
+            "content" : {
+              "application/3gppHal+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "406" : {
+            "description" : "406 Not Acceptable"
+          },
+          "411" : {
+            "description" : "Length Required",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "413" : {
+            "description" : "Payload Too Large",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415" : {
+            "description" : "Unsupported Media Type",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "501" : {
+            "description" : "Not Implemented",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Generic Error"
+          }
+        }
+      },
+      "options" : {
+        "tags" : [ "NF Instances (Store)" ],
+        "summary" : "Discover communication options supported by NRF for NF Instances",
+        "operationId" : "OptionsNFInstances",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "headers" : {
+              "Accept-Encoding" : {
+                "description" : "Accept-Encoding, described in IETF RFC 7694",
+                "style" : "simple",
+                "explode" : false,
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed"
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "501" : {
+            "description" : "Not Implemented",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Generic Error"
+          }
+        }
+      }
+    },
+    "/nf-instances/{nfInstanceID}" : {
+      "get" : {
+        "tags" : [ "NF Instance ID (Document)" ],
+        "summary" : "Read the profile of a given NF Instance",
+        "operationId" : "GetNFInstance",
+        "parameters" : [ {
+          "name" : "nfInstanceID",
+          "in" : "path",
+          "description" : "Unique ID of the NF Instance",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/NfInstanceId"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Expected response to a valid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/NFProfile"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "406" : {
+            "description" : "406 Not Acceptable"
+          },
+          "411" : {
+            "description" : "Length Required",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "413" : {
+            "description" : "Payload Too Large",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415" : {
+            "description" : "Unsupported Media Type",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "501" : {
+            "description" : "Not Implemented",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Generic Error"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "NF Instance ID (Document)" ],
+        "summary" : "Register a new NF Instance",
+        "operationId" : "RegisterNFInstance",
+        "parameters" : [ {
+          "name" : "nfInstanceID",
+          "in" : "path",
+          "description" : "Unique ID of the NF Instance to register",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/NfInstanceId"
+          }
+        }, {
+          "name" : "Content-Encoding",
+          "in" : "header",
+          "description" : "Content-Encoding, described in IETF RFC 7231",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/NFProfile"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK (Profile Replacement)",
+            "headers" : {
+              "Accept-Encoding" : {
+                "description" : "Accept-Encoding, described in IETF RFC 7694",
+                "style" : "simple",
+                "explode" : false,
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/NFProfile"
+                }
+              }
+            }
+          },
+          "201" : {
+            "description" : "Expected response to a valid request",
+            "headers" : {
+              "Location" : {
+                "description" : "Contains the URI of the newly created resource, according to the structure: {apiRoot}/nnrf-nfm/v1/nf-instances/{nfInstanceId}",
+                "required" : true,
+                "style" : "simple",
+                "explode" : false,
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Accept-Encoding" : {
+                "description" : "Accept-Encoding, described in IETF RFC 7694",
+                "style" : "simple",
+                "explode" : false,
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/NFProfile"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad request",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "411" : {
+            "description" : "Length Required",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "413" : {
+            "description" : "Payload Too Large",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415" : {
+            "description" : "Unsupported Media Type",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "501" : {
+            "description" : "Not Implemented",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Generic Error"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "NF Instance ID (Document)" ],
+        "summary" : "Deregisters a given NF Instance",
+        "operationId" : "DeregisterNFInstance",
+        "parameters" : [ {
+          "name" : "nfInstanceID",
+          "in" : "path",
+          "description" : "Unique ID of the NF Instance to deregister",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/NfInstanceId"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Expected response to a successful deregistration"
+          },
+          "400" : {
+            "description" : "Bad request",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "411" : {
+            "description" : "Length Required",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "501" : {
+            "description" : "Not Implemented",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Generic Error"
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "NF Instance ID (Document)" ],
+        "summary" : "Update NF Instance profile",
+        "operationId" : "UpdateNFInstance",
+        "parameters" : [ {
+          "name" : "nfInstanceID",
+          "in" : "path",
+          "description" : "Unique ID of the NF Instance to update",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "$ref" : "#/components/schemas/NfInstanceId"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json-patch+json" : {
+              "schema" : {
+                "minItems" : 1,
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PatchItem"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Expected response to a valid request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/NFProfile"
+                }
+              }
+            }
+          },
+          "204" : {
+            "description" : "Expected response with empty body"
+          },
+          "400" : {
+            "description" : "Bad request",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "411" : {
+            "description" : "Length Required",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "413" : {
+            "description" : "Payload Too Large",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "415" : {
+            "description" : "Unsupported Media Type",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "501" : {
+            "description" : "Not Implemented",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "503" : {
+            "description" : "Service Unavailable",
+            "content" : {
+              "application/problem+json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "Generic Error"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "NFProfile" : {
+        "required" : [ "nfInstanceId", "nfStatus", "nfType" ],
+        "type" : "object",
+        "properties" : {
+          "nfInstanceId" : {
+            "$ref" : "#/components/schemas/NfInstanceId"
+          },
+          "nfType" : {
+            "$ref" : "#/components/schemas/NFType"
+          },
+          "nfStatus" : {
+            "$ref" : "#/components/schemas/NFStatus"
+          },
+          "heartBeatTimer" : {
+            "type" : "integer"
+          },
+          "plmnList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PlmnId"
+            }
+          },
+          "sNssais" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Snssai"
+            }
+          },
+          "perPlmnSnssaiList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PlmnSnssai"
+            }
+          },
+          "nsiList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "fqdn" : {
+            "$ref" : "#/components/schemas/Fqdn"
+          },
+          "interPlmnFqdn" : {
+            "$ref" : "#/components/schemas/Fqdn"
+          },
+          "ipv4Addresses" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Ipv4Addr"
+            }
+          },
+          "ipv6Addresses" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Ipv6Addr"
+            }
+          },
+          "allowedPlmns" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PlmnId"
+            }
+          },
+          "allowedNfTypes" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/NFType"
+            }
+          },
+          "allowedNfDomains" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "allowedNssais" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Snssai"
+            }
+          },
+          "priority" : {
+            "maximum" : 65535,
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "capacity" : {
+            "maximum" : 65535,
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "load" : {
+            "maximum" : 100,
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "locality" : {
+            "type" : "string"
+          },
+          "udrInfo" : {
+            "$ref" : "#/components/schemas/UdrInfo"
+          },
+          "udmInfo" : {
+            "$ref" : "#/components/schemas/UdmInfo"
+          },
+          "ausfInfo" : {
+            "$ref" : "#/components/schemas/AusfInfo"
+          },
+          "amfInfo" : {
+            "$ref" : "#/components/schemas/AmfInfo"
+          },
+          "smfInfo" : {
+            "$ref" : "#/components/schemas/SmfInfo"
+          },
+          "upfInfo" : {
+            "$ref" : "#/components/schemas/UpfInfo"
+          },
+          "pcfInfo" : {
+            "$ref" : "#/components/schemas/PcfInfo"
+          },
+          "bsfInfo" : {
+            "$ref" : "#/components/schemas/BsfInfo"
+          },
+          "chfInfo" : {
+            "$ref" : "#/components/schemas/ChfInfo"
+          },
+          "nrfInfo" : {
+            "$ref" : "#/components/schemas/NrfInfo"
+          },
+          "customInfo" : {
+            "type" : "object"
+          },
+          "recoveryTime" : {
+            "$ref" : "#/components/schemas/DateTime"
+          },
+          "nfServicePersistence" : {
+            "type" : "boolean",
+            "default" : false
+          },
+          "nfServices" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/NFService"
+            }
+          },
+          "nfProfileChangesSupportInd" : {
+            "type" : "boolean",
+            "writeOnly" : true,
+            "default" : false
+          },
+          "nfProfileChangesInd" : {
+            "type" : "boolean",
+            "readOnly" : true,
+            "default" : false
+          },
+          "defaultNotificationSubscriptions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/DefaultNotificationSubscription"
+            }
+          }
+        },
+        "anyOf" : [ {
+          "required" : [ "fqdn" ]
+        }, {
+          "required" : [ "ipv4Addresses" ]
+        }, {
+          "required" : [ "ipv6Addresses" ]
+        } ]
+      },
+      "NFService" : {
+        "required" : [ "nfServiceStatus", "scheme", "serviceInstanceId", "serviceName", "versions" ],
+        "type" : "object",
+        "properties" : {
+          "serviceInstanceId" : {
+            "type" : "string"
+          },
+          "serviceName" : {
+            "$ref" : "#/components/schemas/ServiceName"
+          },
+          "versions" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/NFServiceVersion"
+            }
+          },
+          "scheme" : {
+            "$ref" : "#/components/schemas/UriScheme"
+          },
+          "nfServiceStatus" : {
+            "$ref" : "#/components/schemas/NFServiceStatus"
+          },
+          "fqdn" : {
+            "$ref" : "#/components/schemas/Fqdn"
+          },
+          "interPlmnFqdn" : {
+            "$ref" : "#/components/schemas/Fqdn"
+          },
+          "ipEndPoints" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/IpEndPoint"
+            }
+          },
+          "apiPrefix" : {
+            "type" : "string"
+          },
+          "defaultNotificationSubscriptions" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/DefaultNotificationSubscription"
+            }
+          },
+          "allowedPlmns" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PlmnId"
+            }
+          },
+          "allowedNfTypes" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/NFType"
+            }
+          },
+          "allowedNfDomains" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "allowedNssais" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Snssai"
+            }
+          },
+          "priority" : {
+            "maximum" : 65535,
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "capacity" : {
+            "maximum" : 65535,
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "load" : {
+            "maximum" : 100,
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "recoveryTime" : {
+            "$ref" : "#/components/schemas/DateTime"
+          },
+          "chfServiceInfo" : {
+            "$ref" : "#/components/schemas/ChfServiceInfo"
+          },
+          "supportedFeatures" : {
+            "$ref" : "#/components/schemas/SupportedFeatures"
+          }
+        }
+      },
+      "NFType" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "NRF", "UDM", "AMF", "SMF", "AUSF", "NEF", "PCF", "SMSF", "NSSF", "UDR", "LMF", "GMLC", "5G_EIR", "SEPP", "UPF", "N3IWF", "AF", "UDSF", "BSF", "CHF", "NWDAF" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "Fqdn" : {
+        "type" : "string"
+      },
+      "IpEndPoint" : {
+        "type" : "object",
+        "properties" : {
+          "ipv4Address" : {
+            "$ref" : "#/components/schemas/Ipv4Addr"
+          },
+          "ipv6Address" : {
+            "$ref" : "#/components/schemas/Ipv6Addr"
+          },
+          "transport" : {
+            "$ref" : "#/components/schemas/TransportProtocol"
+          },
+          "port" : {
+            "maximum" : 65535,
+            "minimum" : 0,
+            "type" : "integer"
+          }
+        }
+      },
+      "NfInstanceIdCond" : {
+        "required" : [ "nfInstanceId" ],
+        "type" : "object",
+        "properties" : {
+          "nfInstanceId" : {
+            "$ref" : "#/components/schemas/NfInstanceId"
+          }
+        }
+      },
+      "NfTypeCond" : {
+        "required" : [ "nfType" ],
+        "type" : "object",
+        "not" : {
+          "required" : [ "nfGroupId" ]
+        },
+        "properties" : {
+          "nfType" : {
+            "$ref" : "#/components/schemas/NFType"
+          }
+        }
+      },
+      "ServiceNameCond" : {
+        "required" : [ "serviceName" ],
+        "type" : "object",
+        "properties" : {
+          "serviceName" : {
+            "$ref" : "#/components/schemas/ServiceName"
+          }
+        }
+      },
+      "AmfCond" : {
+        "type" : "object",
+        "properties" : {
+          "amfSetId" : {
+            "$ref" : "#/components/schemas/AmfSetId"
+          },
+          "amfRegionId" : {
+            "$ref" : "#/components/schemas/AmfRegionId"
+          }
+        },
+        "anyOf" : [ {
+          "required" : [ "amfSetId" ]
+        }, {
+          "required" : [ "amfRegionId" ]
+        } ]
+      },
+      "GuamiListCond" : {
+        "required" : [ "guamiList" ],
+        "type" : "object",
+        "properties" : {
+          "guamiList" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Guami"
+            }
+          }
+        }
+      },
+      "NetworkSliceCond" : {
+        "required" : [ "snssaiList" ],
+        "type" : "object",
+        "properties" : {
+          "snssaiList" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Snssai"
+            }
+          },
+          "nsiList" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "NfGroupCond" : {
+        "required" : [ "nfGroupId", "nfType" ],
+        "type" : "object",
+        "properties" : {
+          "nfType" : {
+            "type" : "string",
+            "enum" : [ "UDM", "AUSF", "UDR" ]
+          },
+          "nfGroupId" : {
+            "$ref" : "#/components/schemas/NfGroupId"
+          }
+        }
+      },
+      "NotifCondition" : {
+        "type" : "object",
+        "not" : {
+          "required" : [ "monitoredAttributes", "unmonitoredAttributes" ]
+        },
+        "properties" : {
+          "monitoredAttributes" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "unmonitoredAttributes" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "UdrInfo" : {
+        "type" : "object",
+        "properties" : {
+          "groupId" : {
+            "$ref" : "#/components/schemas/NfGroupId"
+          },
+          "supiRanges" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SupiRange"
+            }
+          },
+          "gpsiRanges" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/IdentityRange"
+            }
+          },
+          "externalGroupIdentifiersRanges" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/IdentityRange"
+            }
+          },
+          "supportedDataSets" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/DataSetId"
+            }
+          }
+        }
+      },
+      "SupiRange" : {
+        "type" : "object",
+        "properties" : {
+          "start" : {
+            "pattern" : "^[0-9]+$",
+            "type" : "string"
+          },
+          "end" : {
+            "pattern" : "^[0-9]+$",
+            "type" : "string"
+          },
+          "pattern" : {
+            "type" : "string"
+          }
+        }
+      },
+      "IdentityRange" : {
+        "type" : "object",
+        "properties" : {
+          "start" : {
+            "pattern" : "^[0-9]+$",
+            "type" : "string"
+          },
+          "end" : {
+            "pattern" : "^[0-9]+$",
+            "type" : "string"
+          },
+          "pattern" : {
+            "type" : "string"
+          }
+        }
+      },
+      "DataSetId" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "SUBSCRIPTION", "POLICY", "EXPOSURE", "APPLICATION" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "UdmInfo" : {
+        "type" : "object",
+        "properties" : {
+          "groupId" : {
+            "$ref" : "#/components/schemas/NfGroupId"
+          },
+          "supiRanges" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SupiRange"
+            }
+          },
+          "gpsiRanges" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/IdentityRange"
+            }
+          },
+          "externalGroupIdentifiersRanges" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/IdentityRange"
+            }
+          },
+          "routingIndicators" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "pattern" : "^[0-9]{1,4}$",
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "AusfInfo" : {
+        "type" : "object",
+        "properties" : {
+          "groupId" : {
+            "$ref" : "#/components/schemas/NfGroupId"
+          },
+          "supiRanges" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SupiRange"
+            }
+          },
+          "routingIndicators" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "pattern" : "^[0-9]{1,4}$",
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "AmfInfo" : {
+        "required" : [ "amfRegionId", "amfSetId", "guamiList" ],
+        "type" : "object",
+        "properties" : {
+          "amfSetId" : {
+            "$ref" : "#/components/schemas/AmfSetId"
+          },
+          "amfRegionId" : {
+            "$ref" : "#/components/schemas/AmfRegionId"
+          },
+          "guamiList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Guami"
+            }
+          },
+          "taiList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Tai"
+            }
+          },
+          "taiRangeList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/TaiRange"
+            }
+          },
+          "backupInfoAmfFailure" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Guami"
+            }
+          },
+          "backupInfoAmfRemoval" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Guami"
+            }
+          },
+          "n2InterfaceAmfInfo" : {
+            "$ref" : "#/components/schemas/N2InterfaceAmfInfo"
+          }
+        }
+      },
+      "SmfInfo" : {
+        "required" : [ "sNssaiSmfInfoList" ],
+        "type" : "object",
+        "properties" : {
+          "sNssaiSmfInfoList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SnssaiSmfInfoItem"
+            }
+          },
+          "taiList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Tai"
+            }
+          },
+          "taiRangeList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/TaiRange"
+            }
+          },
+          "pgwFqdn" : {
+            "$ref" : "#/components/schemas/Fqdn"
+          },
+          "accessType" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/AccessType"
+            }
+          }
+        }
+      },
+      "SnssaiSmfInfoItem" : {
+        "required" : [ "dnnSmfInfoList", "sNssai" ],
+        "type" : "object",
+        "properties" : {
+          "sNssai" : {
+            "$ref" : "#/components/schemas/Snssai"
+          },
+          "dnnSmfInfoList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/DnnSmfInfoItem"
+            }
+          }
+        }
+      },
+      "DnnSmfInfoItem" : {
+        "required" : [ "dnn" ],
+        "type" : "object",
+        "properties" : {
+          "dnn" : {
+            "$ref" : "#/components/schemas/Dnn"
+          }
+        }
+      },
+      "UpfInfo" : {
+        "required" : [ "sNssaiUpfInfoList" ],
+        "type" : "object",
+        "properties" : {
+          "sNssaiUpfInfoList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SnssaiUpfInfoItem"
+            }
+          },
+          "smfServingArea" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "interfaceUpfInfoList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/InterfaceUpfInfoItem"
+            }
+          },
+          "iwkEpsInd" : {
+            "type" : "boolean",
+            "default" : false
+          },
+          "pduSessionTypes" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PduSessionType"
+            }
+          }
+        }
+      },
+      "SnssaiUpfInfoItem" : {
+        "required" : [ "dnnUpfInfoList", "sNssai" ],
+        "type" : "object",
+        "properties" : {
+          "sNssai" : {
+            "$ref" : "#/components/schemas/Snssai"
+          },
+          "dnnUpfInfoList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/DnnUpfInfoItem"
+            }
+          }
+        }
+      },
+      "DnnUpfInfoItem" : {
+        "required" : [ "dnn" ],
+        "type" : "object",
+        "properties" : {
+          "dnn" : {
+            "$ref" : "#/components/schemas/Dnn"
+          },
+          "dnaiList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Dnai"
+            }
+          },
+          "pduSessionTypes" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PduSessionType"
+            }
+          }
+        }
+      },
+      "InterfaceUpfInfoItem" : {
+        "required" : [ "interfaceType" ],
+        "type" : "object",
+        "properties" : {
+          "interfaceType" : {
+            "$ref" : "#/components/schemas/UPInterfaceType"
+          },
+          "ipv4EndpointAddresses" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Ipv4Addr"
+            }
+          },
+          "ipv6EndpointAddresses" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Ipv6Addr"
+            }
+          },
+          "endpointFqdn" : {
+            "$ref" : "#/components/schemas/Fqdn"
+          },
+          "networkInstance" : {
+            "type" : "string"
+          }
+        }
+      },
+      "UPInterfaceType" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "N3", "N6", "N9" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "PcfInfo" : {
+        "type" : "object",
+        "properties" : {
+          "dnnList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Dnn"
+            }
+          },
+          "supiRanges" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SupiRange"
+            }
+          },
+          "rxDiamHost" : {
+            "$ref" : "#/components/schemas/DiameterIdentity"
+          },
+          "rxDiamRealm" : {
+            "$ref" : "#/components/schemas/DiameterIdentity"
+          }
+        }
+      },
+      "BsfInfo" : {
+        "type" : "object",
+        "properties" : {
+          "dnnList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Dnn"
+            }
+          },
+          "ipDomainList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "ipv4AddressRanges" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Ipv4AddressRange"
+            }
+          },
+          "ipv6PrefixRanges" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Ipv6PrefixRange"
+            }
+          }
+        }
+      },
+      "ChfInfo" : {
+        "type" : "object",
+        "properties" : {
+          "supiRangeList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SupiRange"
+            }
+          },
+          "gpsiRangeList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/IdentityRange"
+            }
+          },
+          "plmnRangeList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/PlmnRange"
+            }
+          }
+        }
+      },
+      "Ipv4AddressRange" : {
+        "type" : "object",
+        "properties" : {
+          "start" : {
+            "$ref" : "#/components/schemas/Ipv4Addr"
+          },
+          "end" : {
+            "$ref" : "#/components/schemas/Ipv4Addr"
+          }
+        }
+      },
+      "Ipv6PrefixRange" : {
+        "type" : "object",
+        "properties" : {
+          "start" : {
+            "$ref" : "#/components/schemas/Ipv6Prefix"
+          },
+          "end" : {
+            "$ref" : "#/components/schemas/Ipv6Prefix"
+          }
+        }
+      },
+      "DefaultNotificationSubscription" : {
+        "required" : [ "callbackUri", "notificationType" ],
+        "type" : "object",
+        "properties" : {
+          "notificationType" : {
+            "$ref" : "#/components/schemas/NotificationType"
+          },
+          "callbackUri" : {
+            "$ref" : "#/components/schemas/Uri"
+          },
+          "n1MessageClass" : {
+            "$ref" : "#/components/schemas/N1MessageClass"
+          },
+          "n2InformationClass" : {
+            "$ref" : "#/components/schemas/N2InformationClass"
+          }
+        }
+      },
+      "NotificationType" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "N1_MESSAGES", "N2_INFORMATION", "LOCATION_NOTIFICATION", "DATA_REMOVAL_NOTIFICATION", "DATA_CHANGE_NOTIFICATION" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "TransportProtocol" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "TCP" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "NotificationEventType" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "NF_REGISTERED", "NF_DEREGISTERED", "NF_PROFILE_CHANGED" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "NotificationData" : {
+        "required" : [ "event", "nfInstanceUri" ],
+        "type" : "object",
+        "properties" : {
+          "event" : {
+            "$ref" : "#/components/schemas/NotificationEventType"
+          },
+          "nfInstanceUri" : {
+            "$ref" : "#/components/schemas/Uri"
+          },
+          "nfProfile" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/NFProfile"
+            }, {
+              "not" : {
+                "required" : [ "interPlmnFqdn" ]
+              }
+            }, {
+              "not" : {
+                "required" : [ "allowedPlmns" ]
+              }
+            }, {
+              "not" : {
+                "required" : [ "allowedNfTypes" ]
+              }
+            }, {
+              "not" : {
+                "required" : [ "allowedNfDomains" ]
+              }
+            }, {
+              "not" : {
+                "required" : [ "allowedNssais" ]
+              }
+            }, {
+              "properties" : {
+                "nfServices" : {
+                  "type" : "array",
+                  "items" : {
+                    "allOf" : [ {
+                      "$ref" : "#/components/schemas/NFService"
+                    }, {
+                      "not" : {
+                        "required" : [ "interPlmnFqdn" ]
+                      }
+                    }, {
+                      "not" : {
+                        "required" : [ "allowedPlmns" ]
+                      }
+                    }, {
+                      "not" : {
+                        "required" : [ "allowedNfTypes" ]
+                      }
+                    }, {
+                      "not" : {
+                        "required" : [ "allowedNfDomains" ]
+                      }
+                    }, {
+                      "not" : {
+                        "required" : [ "allowedNssais" ]
+                      }
+                    } ]
+                  }
+                }
+              }
+            } ]
+          },
+          "profileChanges" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ChangeItem"
+            }
+          }
+        },
+        "allOf" : [ {
+          "anyOf" : [ {
+            "not" : {
+              "properties" : {
+                "event" : {
+                  "type" : "string",
+                  "enum" : [ "NF_PROFILE_CHANGED" ]
+                }
+              }
+            }
+          }, {
+            "oneOf" : [ {
+              "required" : [ "nfProfile" ]
+            }, {
+              "required" : [ "profileChanges" ]
+            } ]
+          } ]
+        }, {
+          "anyOf" : [ {
+            "not" : {
+              "properties" : {
+                "event" : {
+                  "type" : "string",
+                  "enum" : [ "NF_REGISTERED" ]
+                }
+              }
+            }
+          }, {
+            "required" : [ "nfProfile" ]
+          } ]
+        } ]
+      },
+      "NFStatus" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "REGISTERED", "SUSPENDED", "UNDISCOVERABLE" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "NFServiceVersion" : {
+        "required" : [ "apiFullVersion", "apiVersionInUri" ],
+        "type" : "object",
+        "properties" : {
+          "apiVersionInUri" : {
+            "type" : "string"
+          },
+          "apiFullVersion" : {
+            "type" : "string"
+          },
+          "expiry" : {
+            "$ref" : "#/components/schemas/DateTime"
+          }
+        }
+      },
+      "ServiceName" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "nnrf-nfm", "nnrf-disc", "nudm-sdm", "nudm-uecm", "nudm-ueau", "nudm-ee", "nudm-pp", "namf-comm", "namf-evts", "namf-mt", "namf-loc", "nsmf-pdusession", "nsmf-event-exposure", "nausf-auth", "nausf-sorprotection", "nausf-upuprotection", "nnef-pfdmanagement", "npcf-am-policy-control", "npcf-smpolicycontrol", "npcf-policyauthorization", "npcf-bdtpolicycontrol", "npcf-eventexposure", "npcf-ue-policy-control", "nsmsf-sms", "nnssf-nsselection", "nnssf-nssaiavailability", "nudr-dr", "nlmf-loc", "n5g-eir-eic", "nbsf-management", "nchf-spendinglimitcontrol", "nchf-convergedcharging", "nnwdaf-eventssubscription", "nnwdaf-analyticsinfo" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "N2InterfaceAmfInfo" : {
+        "type" : "object",
+        "properties" : {
+          "ipv4EndpointAddress" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Ipv4Addr"
+            }
+          },
+          "ipv6EndpointAddress" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Ipv6Addr"
+            }
+          },
+          "amfName" : {
+            "$ref" : "#/components/schemas/AmfName"
+          }
+        }
+      },
+      "NFServiceStatus" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "REGISTERED", "SUSPENDED", "UNDISCOVERABLE" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "TaiRange" : {
+        "required" : [ "plmnId", "tacRangeList" ],
+        "type" : "object",
+        "properties" : {
+          "plmnId" : {
+            "$ref" : "#/components/schemas/PlmnId"
+          },
+          "tacRangeList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/TacRange"
+            }
+          }
+        }
+      },
+      "TacRange" : {
+        "type" : "object",
+        "properties" : {
+          "start" : {
+            "pattern" : "^([A-Fa-f0-9]{4}|[A-Fa-f0-9]{6})$",
+            "type" : "string"
+          },
+          "end" : {
+            "pattern" : "^([A-Fa-f0-9]{4}|[A-Fa-f0-9]{6})$",
+            "type" : "string"
+          },
+          "pattern" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ChfServiceInfo" : {
+        "type" : "object",
+        "not" : {
+          "required" : [ "primaryChfServiceInstance", "secondaryChfServiceInstance" ]
+        },
+        "properties" : {
+          "primaryChfServiceInstance" : {
+            "type" : "string"
+          },
+          "secondaryChfServiceInstance" : {
+            "type" : "string"
+          }
+        }
+      },
+      "PlmnRange" : {
+        "type" : "object",
+        "properties" : {
+          "start" : {
+            "pattern" : "^[0-9]{3}[0-9]{2,3}$",
+            "type" : "string"
+          },
+          "end" : {
+            "pattern" : "^[0-9]{3}[0-9]{2,3}$",
+            "type" : "string"
+          },
+          "pattern" : {
+            "type" : "string"
+          }
+        }
+      },
+      "NrfInfo" : {
+        "type" : "object",
+        "properties" : {
+          "servedUdrInfo" : {
+            "minProperties" : 1,
+            "type" : "object",
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/UdrInfo"
+            }
+          },
+          "servedUdmInfo" : {
+            "minProperties" : 1,
+            "type" : "object",
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/UdmInfo"
+            }
+          },
+          "servedAusfInfo" : {
+            "minProperties" : 1,
+            "type" : "object",
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/AusfInfo"
+            }
+          },
+          "servedAmfInfo" : {
+            "minProperties" : 1,
+            "type" : "object",
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/AmfInfo"
+            }
+          },
+          "servedSmfInfo" : {
+            "minProperties" : 1,
+            "type" : "object",
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/SmfInfo"
+            }
+          },
+          "servedUpfInfo" : {
+            "minProperties" : 1,
+            "type" : "object",
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/UpfInfo"
+            }
+          },
+          "servedPcfInfo" : {
+            "minProperties" : 1,
+            "type" : "object",
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/PcfInfo"
+            }
+          },
+          "servedBsfInfo" : {
+            "minProperties" : 1,
+            "type" : "object",
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/BsfInfo"
+            }
+          },
+          "servedChfInfo" : {
+            "minProperties" : 1,
+            "type" : "object",
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/ChfInfo"
+            }
+          }
+        }
+      },
+      "PlmnSnssai" : {
+        "required" : [ "plmnId", "sNssaiList" ],
+        "type" : "object",
+        "properties" : {
+          "plmnId" : {
+            "$ref" : "#/components/schemas/PlmnId"
+          },
+          "sNssaiList" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Snssai"
+            }
+          }
+        }
+      },
+      "LinksValueSchema" : {
+        "oneOf" : [ {
+          "minItems" : 1,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/components/schemas/Link"
+          }
+        }, {
+          "$ref" : "#/components/schemas/Link"
+        } ]
+      },
+      "Link" : {
+        "type" : "object",
+        "properties" : {
+          "href" : {
+            "$ref" : "#/components/schemas/Uri"
+          }
+        }
+      },
+      "Uri" : {
+        "type" : "string"
+      },
+      "ProblemDetails" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "$ref" : "#/components/schemas/Uri"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "integer"
+          },
+          "detail" : {
+            "type" : "string"
+          },
+          "instance" : {
+            "$ref" : "#/components/schemas/Uri"
+          },
+          "cause" : {
+            "type" : "string"
+          },
+          "invalidParams" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/InvalidParam"
+            }
+          },
+          "supportedFeatures" : {
+            "$ref" : "#/components/schemas/SupportedFeatures"
+          }
+        }
+      },
+      "InvalidParam" : {
+        "required" : [ "param" ],
+        "type" : "object",
+        "properties" : {
+          "param" : {
+            "type" : "string"
+          },
+          "reason" : {
+            "type" : "string"
+          }
+        }
+      },
+      "SupportedFeatures" : {
+        "pattern" : "/^[A-Fa-f0-9]*$/",
+        "type" : "string"
+      },
+      "NfInstanceId" : {
+        "type" : "string",
+        "format" : "uuid"
+      },
+      "PatchItem" : {
+        "required" : [ "op", "path" ],
+        "type" : "object",
+        "properties" : {
+          "op" : {
+            "$ref" : "#/components/schemas/PatchOperation"
+          },
+          "path" : {
+            "type" : "string"
+          },
+          "from" : {
+            "type" : "string"
+          },
+          "value" : {
+            "nullable" : true
+          }
+        }
+      },
+      "PatchOperation" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "add", "copy", "move", "remove", "replace", "test" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "PlmnId" : {
+        "required" : [ "mcc", "mnc" ],
+        "type" : "object",
+        "properties" : {
+          "mcc" : {
+            "$ref" : "#/components/schemas/Mcc"
+          },
+          "mnc" : {
+            "$ref" : "#/components/schemas/Mnc"
+          }
+        }
+      },
+      "Mcc" : {
+        "pattern" : "^\\d{3}$",
+        "type" : "string"
+      },
+      "Mnc" : {
+        "pattern" : "^\\d{2,3}$",
+        "type" : "string"
+      },
+      "Snssai" : {
+        "required" : [ "sst" ],
+        "type" : "object",
+        "properties" : {
+          "sst" : {
+            "maximum" : 255,
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "sd" : {
+            "pattern" : "^[A-Fa-f0-9]{6}$",
+            "type" : "string"
+          }
+        }
+      },
+      "Ipv4Addr" : {
+        "type" : "string",
+        "pattern" : "^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$",
+        "example" : "198.51.100.1"
+      },
+      "Ipv6Addr" : {
+        "type" : "string",
+        "example" : "2001:db8:85a3::8a2e:370:7334",
+        "allOf" : [ {
+          "pattern" : "^((:|(0?|([1-9a-f][0-9a-f]{0,3}))):)((0?|([1-9a-f][0-9a-f]{0,3})):){0,6}(:|(0?|([1-9a-f][0-9a-f]{0,3})))$"
+        }, {
+          "pattern" : "^((([^:]+:){7}([^:]+))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?))$"
+        } ]
+      },
+      "DateTime" : {
+        "type" : "string",
+        "format" : "date-time"
+      },
+      "UriScheme" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "http", "https" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "AmfSetId" : {
+        "pattern" : "/^[0-3][A-Fa-f0-9]{2}$/",
+        "type" : "string"
+      },
+      "AmfRegionId" : {
+        "pattern" : "/^[A-Fa-f0-9]{2}$/",
+        "type" : "string"
+      },
+      "Guami" : {
+        "required" : [ "amfId", "plmnId" ],
+        "type" : "object",
+        "properties" : {
+          "plmnId" : {
+            "$ref" : "#/components/schemas/PlmnId"
+          },
+          "amfId" : {
+            "$ref" : "#/components/schemas/AmfId"
+          }
+        }
+      },
+      "AmfId" : {
+        "pattern" : "/^[A-Fa-f0-9]{6}$/",
+        "type" : "string"
+      },
+      "NfGroupId" : {
+        "type" : "string"
+      },
+      "Tai" : {
+        "required" : [ "plmnId", "tac" ],
+        "type" : "object",
+        "properties" : {
+          "plmnId" : {
+            "$ref" : "#/components/schemas/PlmnId"
+          },
+          "tac" : {
+            "$ref" : "#/components/schemas/Tac"
+          }
+        }
+      },
+      "Tac" : {
+        "pattern" : "/(^[A-Fa-f0-9]{4}$)|(^[A-Fa-f0-9]{6}$)/",
+        "type" : "string"
+      },
+      "AccessType" : {
+        "type" : "string",
+        "enum" : [ "3GPP_ACCESS", "NON_3GPP_ACCESS" ]
+      },
+      "Dnn" : {
+        "type" : "string"
+      },
+      "PduSessionType" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "IPV4", "IPV6", "IPV4V6", "UNSTRUCTURED", "ETHERNET" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "Dnai" : {
+        "type" : "string"
+      },
+      "DiameterIdentity" : {
+        "pattern" : "/^([A-Za-z0-9]+([-A-Za-z0-9]+)\\.)+[a-z]{2,}$/",
+        "type" : "string"
+      },
+      "Ipv6Prefix" : {
+        "type" : "string",
+        "example" : "2001:db8:abcd:12::0/64",
+        "allOf" : [ {
+          "pattern" : "^((:|(0?|([1-9a-f][0-9a-f]{0,3}))):)((0?|([1-9a-f][0-9a-f]{0,3})):){0,6}(:|(0?|([1-9a-f][0-9a-f]{0,3})))(\\/(([0-9])|([0-9]{2})|(1[0-1][0-9])|(12[0-8])))$"
+        }, {
+          "pattern" : "^((([^:]+:){7}([^:]+))|((([^:]+:)*[^:]+)?::(([^:]+:)*[^:]+)?))(\\/.+)$"
+        } ]
+      },
+      "N1MessageClass" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "5GMM", "SM", "LPP", "SMS", "UPDP" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "N2InformationClass" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "SM", "NRPPa", "PWS", "PWS-BCAL", "PWS-RF", "RAN" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "ChangeItem" : {
+        "required" : [ "op", "path" ],
+        "type" : "object",
+        "properties" : {
+          "op" : {
+            "$ref" : "#/components/schemas/ChangeType"
+          },
+          "path" : {
+            "type" : "string"
+          },
+          "from" : {
+            "type" : "string"
+          },
+          "origValue" : { },
+          "newValue" : { }
+        }
+      },
+      "ChangeType" : {
+        "anyOf" : [ {
+          "type" : "string",
+          "enum" : [ "ADD", "MOVE", "REMOVE", "REPLACE" ]
+        }, {
+          "type" : "string"
+        } ]
+      },
+      "AmfName" : {
+        "type" : "string"
+      },
+      "inline_response_200" : {
+        "type" : "object",
+        "properties" : {
+          "_links" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/LinksValueSchema"
+            },
+            "description" : "List of the URI of NF instances. It has two members whose names are item and self. The item one contains an array of URIs."
+          }
+        }
+      }
+    }
+  }
+}
